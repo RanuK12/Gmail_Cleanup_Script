@@ -1,90 +1,90 @@
 # Gmail Cleanup Script
 
-Un script simple pero efectivo para Google Apps Script que te ayuda a mantener tu bandeja de entrada de Gmail limpia y organizada, eliminando automáticamente los correos electrónicos no deseados según criterios personalizables.
+A simple yet effective Google Apps Script to keep your Gmail inbox clean and organized by automatically removing unwanted emails based on customizable criteria.
 
-## Características
+## Features
 
-- Elimina correos electrónicos automáticamente basándose en consultas de búsqueda de Gmail
-- Configurable para diferentes categorías, etiquetas y criterios de tiempo
-- Respeta los correos destacados (con estrella)
-- Procesamiento por lotes para manejar grandes volúmenes de correo
-- Registro detallado de las operaciones realizadas
+- Automatically removes emails based on Gmail search queries
+- Configurable for different categories, labels, and time criteria
+- Respects starred emails
+- Batch processing to handle large volumes of email
+- Detailed logging of operations
 
-## ¿Cómo funciona?
+## How It Works
 
-Por defecto, el script está configurado para eliminar:
-- Correos en la categoría "Promociones"
-- Que están en la bandeja de entrada
-- Que NO están destacados con estrella
-- Que son más antiguos de 1 año
+By default, the script is configured to remove:
+- Emails in the "Promotions" category
+- That are in the inbox
+- That are NOT starred
+- That are older than 1 year
 
-## Instalación
+## Installation
 
-1. Abre [Google Apps Script](https://script.google.com/)
-2. Crea un nuevo proyecto
-3. Copia y pega el código del archivo `gmail-cleanup.js`
-4. Guarda el proyecto con un nombre descriptivo (por ejemplo, "Gmail Cleanup")
+1. Open [Google Apps Script](https://script.google.com/)
+2. Create a new project
+3. Copy and paste the code from the `gmail-cleanup.js` file
+4. Save the project with a descriptive name (e.g., "Gmail Cleanup")
 
-## Uso
+## Usage
 
-### Ejecución manual
+### Manual Execution
 
-1. Abre tu proyecto de Google Apps Script
-2. Selecciona la función `runCleanup` en el menú desplegable
-3. Haz clic en el botón de reproducción (▶️) para ejecutar el script
-4. La primera vez, necesitarás autorizar el script para acceder a tu Gmail
+1. Open your Google Apps Script project
+2. Select the `runCleanup` function from the dropdown menu
+3. Click the play button (▶️) to run the script
+4. First time, you'll need to authorize the script to access your Gmail
 
-### Ejecución automática (programada)
+### Automatic Execution (Scheduled)
 
-1. En tu proyecto de Google Apps Script, haz clic en el icono del reloj en la barra lateral (⏰)
-2. Haz clic en "Agregar disparador"
-3. Configura el disparador:
-   - Selecciona la función `cleanup`
-   - Elige la fuente de eventos como "Basado en tiempo"
-   - Selecciona la frecuencia deseada (diaria, semanal, etc.)
-   - Configura la hora específica para la ejecución
-4. Guarda el disparador
+1. In your Google Apps Script project, click on the clock icon in the sidebar (⏰)
+2. Click "Add Trigger"
+3. Configure the trigger:
+   - Select the `cleanup` function
+   - Choose event source as "Time-driven"
+   - Select desired frequency (daily, weekly, etc.)
+   - Configure specific time for execution
+4. Save the trigger
 
-## Personalización
+## Customization
 
-### Modificar criterios de búsqueda
+### Modify Search Criteria
 
-Edita el array `queryArray` para incluir tus propias consultas de búsqueda. Google Apps Script utiliza la misma sintaxis de búsqueda que Gmail.
+Edit the `queryArray` to include your own search queries. Google Apps Script uses the same search syntax as Gmail.
 
-Ejemplos de consultas útiles:
+Useful query examples:
 
 ```javascript
 const queryArray = [
-  "category:promotions in:inbox AND -in:starred older_than:",  // Promociones antiguas
-  "category:social in:inbox AND -in:starred older_than:",      // Social antiguo
-  "label:newsletter older_than:",                              // Newsletters antiguos
-  "from:example.com AND -in:starred older_than:",              // Correos antiguos de un dominio específico
+  "category:promotions in:inbox AND -in:starred older_than:",  // Old promotions
+  "category:social in:inbox AND -in:starred older_than:",      // Old social
+  "label:newsletter older_than:",                              // Old newsletters
+  "from:example.com AND -in:starred older_than:",              // Old emails from a specific domain
 ];
 ```
 
-### Modificar períodos de tiempo
+### Modify Time Periods
 
-Edita el array `delayInfo` para cambiar el período de tiempo para cada consulta:
+Edit the `delayInfo` array to change the time period for each query:
 
 ```javascript
 const delayInfo = [
-  {index: 0, type: "year", value: 1},   // 1 año para la consulta en posición 0
-  {index: 1, type: "month", value: 6},  // 6 meses para la consulta en posición 1
-  {index: 2, type: "day", value: 30},   // 30 días para la consulta en posición 2
-  {index: 3, type: "month", value: 3}   // 3 meses para la consulta en posición 3
+  {index: 0, type: "year", value: 1},   // 1 year for query at position 0
+  {index: 1, type: "month", value: 6},  // 6 months for query at position 1
+  {index: 2, type: "day", value: 30},   // 30 days for query at position 2
+  {index: 3, type: "month", value: 3}   // 3 months for query at position 3
 ];
 ```
 
-## Precauciones
+## Precautions
 
-- **Prueba primero**: Antes de programar ejecuciones automáticas, ejecuta el script manualmente para verificar que funciona como esperas.
-- **Respaldos**: Considera hacer una copia de seguridad de correos importantes.
-- **Papelera**: Los correos se mueven a la papelera, no se eliminan permanentemente de inmediato.
+- **Test First**: Before scheduling automatic runs, execute the script manually to verify it works as expected.
+- **Backups**: Consider backing up important emails.
+- **Trash**: Emails are moved to trash, not immediately permanently deleted.
 
-## Licencia
+## License
 
-Este proyecto está licenciado bajo la [Licencia MIT](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
 
-## Contribuciones
+## Contributions
 
-Las contribuciones son bienvenidas. Siéntete libre de abrir un issue o enviar un pull request.
+Contributions are welcome. Feel free to open an issue or submit a pull request.
