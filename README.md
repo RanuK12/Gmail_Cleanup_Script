@@ -83,7 +83,7 @@ const delayInfo = [
 
 ## License
 
-This project is licensed under the [MIT License](MIT_LICENSE).
+MIT — © 2026 Ranuk IT Solutions | ranuk.dev
 
 ## Contributions
 
