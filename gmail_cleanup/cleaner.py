@@ -10,7 +10,7 @@ from __future__ import annotations
 import logging
 import time
 from dataclasses import dataclass, field
-from typing import Optional
+
 
 logger = logging.getLogger(__name__)
 
@@ -56,8 +56,8 @@ def build_query(base_query: str, delay: dict) -> str:
 
 
 def build_queries(
-    queries: Optional[list[str]] = None,
-    delays: Optional[list[dict]] = None,
+    queries: list[str] | None = None,
+    delays: list[dict] | None = None,
 ) -> list[str]:
     """Build all queries from config arrays.
 
@@ -89,8 +89,8 @@ def build_queries(
 
 def cleanup(
     service,
-    queries: Optional[list[str]] = None,
-    delays: Optional[list[dict]] = None,
+    queries: list[str] | None = None,
+    delays: list[dict] | None = None,
     batch_limit: int = BATCH_LIMIT,
     dry_run: bool = False,
 ) -> CleanupResult:
@@ -136,7 +136,7 @@ def _process_query(
         Number of threads processed.
     """
     processed = 0
-    page_token: Optional[str] = None
+    page_token: str | None = None
 
     while True:
         # List threads matching the query
